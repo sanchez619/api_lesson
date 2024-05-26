@@ -63,7 +63,7 @@ async function getStatus(e) {
 
 function displayException(data) {
 
-    let heading = `<div class="error-heading">An Exception Occurred</div>`;
+    let heading = `An Exception Occurred`;
 
     results = `<div>The API returned status code ${data.status_code}</div>`;
     results += `<div>Error number: <strong>${data.error_no}</strong></div>`;
