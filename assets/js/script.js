@@ -8,7 +8,7 @@ document.getElementById("submit").addEventListener("click", e => postForm(e));
 function processOptions(form) {
 
     let optArray = [];
-    
+
     for (let entry of form.entries()) {
         if (entry[0] === "options"){
             optArray.push(entry[1]);
@@ -86,6 +86,27 @@ function displayStatus(data) {
     let results = `<div>Your key is valid until</div>`;
     results += `<div class="key-status">${data.expiry}</div>`;
 
+    document.getElementById("resultsModalTitle").innerText = heading;
+    document.getElementById("results-content").innerHTML = results;
+    resultsModal.show();
+
+}
+
+function displayException(data) {
+
+    let results = "";
+    let heading = "";
+
+    if (data.status_code === 200) {
+        heading += "No Exception Occured"
+        results += `<div class="no_exceptions">The API returned status code ${data.status_code}</div>`;
+    } else {
+        heading += "An Exception Occured"
+        results += `<div class="exception">The API returned status code ${data.status_code}`;
+        results += `Error number: ${data.error_no}`;
+        results += `Error text: ${data.error}`;
+    }
+    
     document.getElementById("resultsModalTitle").innerText = heading;
     document.getElementById("results-content").innerHTML = results;
     resultsModal.show();
